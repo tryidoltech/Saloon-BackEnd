@@ -5,7 +5,7 @@ import admin
 import pos
 import public
 import worker
-#import otpAuth
+from otpAuth import otpAuth
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -543,5 +543,18 @@ def appointment_list():
     response = public.appointmentList(request.json.get("phoneNum"), request.json.get("date"))
     return jsonify(response)
 
+@app.route('/api/public/otp', methods=["POST"])
+@cross_origin()
+def send_otp():
+    """
+    Accepted JSON format:
+    {
+        "phone": Phone Number of Customer [string]
+    }
+    """
+    phone = request.json.get("phone")
+    otp = otpAuth(phone)
+    response = otp.getOtp()
+    return response
 
 app.run(host="0.0.0.0", port=5001)
