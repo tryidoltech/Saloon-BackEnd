@@ -1,0 +1,7 @@
+pymongo
+python-dotenv
+gunicorn
+flask
+flask-cors
+cloudinary
+pillow
