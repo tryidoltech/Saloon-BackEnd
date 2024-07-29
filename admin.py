@@ -73,7 +73,9 @@ def editSettings(shopName, email, phone, address, gstin, ownerName, offDays, upi
         "upiId": upiId
     }
     if timings is not None:
-        data['timings'] = timings.split(',')
+        timings = timings.split(',')
+        data['timing']['start'] = timings[0]
+        data['timing']['end'] = timings[1]
     data = {k: v for k, v in data.items() if v is not None}
     if img is not None:
         data['imgUrl'] = db.uploadImage(img)
