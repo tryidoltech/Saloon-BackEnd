@@ -57,8 +57,3 @@ class otpAuth:
             return {"success": False, "msg": "OTP not verified"}
         response = requests.get('https://user.phone.email/user_' + self.finalResp.get('access_token') + '.json')
         return response.json().get('user_phone_number')
-
-otp = otpAuth('9784817840')
-print(otp.getOtp())
-print(otp.verifyOtp(input('Enter OTP: ')))
-print(otp.getPhoneNum())

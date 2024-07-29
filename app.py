@@ -572,4 +572,21 @@ def verify_otp():
     response = otp.verifyOtp(request.json.get("otp"), request.json)
     return response
 
+@app.route('/checkAuthPage', methods=["POST"])
+@cross_origin()
+def check_auth_page():
+    """
+    Accepted JSON format:
+    {
+        "phone": Phone Number of Customer [string]
+    }
+    :return:
+    """
+    phone = request.json.get("phone")
+    request.headers.get('Bearer')
+    if phone != None and request.headers.get('bearer') != None and otp_auths.get(phone) == request.headers.get('bearer'):
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
+
 app.run(host="0.0.0.0", port=5001)
