@@ -557,4 +557,19 @@ def send_otp():
     response = otp.getOtp()
     return response
 
+@app.route('/api/public/otp/verify', methods=["POST"])
+@cross_origin()
+def verify_otp():
+    """
+    Accepted JSON format:
+    {
+        "otp": OTP [string],
+        "cookies": Cookies [string],
+        "flag_allow_auth_name": Flag Allow Auth Name [string]
+    }
+    """
+    otp = otpAuth("")
+    response = otp.verifyOtp(request.json.get("otp"), request.json)
+    return response
+
 app.run(host="0.0.0.0", port=5001)
