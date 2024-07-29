@@ -543,15 +543,5 @@ def appointment_list():
     response = public.appointmentList(request.json.get("phoneNum"), request.json.get("date"))
     return jsonify(response)
 
-@app.route('/api/public/otp', methods=["GET"])
-@cross_origin()
-def send_otp():
-    """
-    Accepted JSON format:
-    {
-        "phone": Phone Number of Customer [string]
-    }
-    """
-    phone = request.json.get("phone")
 
 app.run(host="0.0.0.0", port=5001)
