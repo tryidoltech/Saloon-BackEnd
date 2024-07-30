@@ -19,6 +19,10 @@ def updateItem(name, price, duration, employee, serviceDesc, img):
             break
     if prevData is None:
         return {"success": False, "msg": "Service not found"}
+    if price is not None:
+        price = int(price)
+    if duration is not None:
+        duration = int(duration)
     data = {"name": name, "price": price, "duration": duration, "employee": employee, "serviceDesc": serviceDesc}
     filterData = {k: v for k, v in data.items() if v is not None}
     data = {**prevData, **filterData}
