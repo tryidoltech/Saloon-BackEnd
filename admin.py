@@ -43,6 +43,10 @@ def updateInventory(name, qty, price, img):
     prevData = worker.getInventory().get(name)
     if prevData is None:
         return {"success": False, "msg": "Inventory not found"}
+    if qty is not None:
+        qty = int(qty)
+    if price is not None:
+        price = int(price)
     data = {"name": name, "quantity": qty, "price": price}
     filterData = {k: v for k, v in data.items() if v is not None}
     data = {**prevData, **filterData}
